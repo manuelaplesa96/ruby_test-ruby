@@ -1,7 +1,7 @@
 class Image
     attr_accessor :m, :n, :img
     
-    def initialize(m ,n)
+    def initialize(m=1,n=1)
         if check_dimensions?(m,n)
             @m = m
             @n = n

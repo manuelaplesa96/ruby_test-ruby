@@ -17,79 +17,56 @@ require_relative 'horizontal_segment'
 require_relative 'fill_region'
 
 
-# class Command
-#     attr_reader :command
+class Command
+    attr_reader :command
 
-#     def initialize(command)
-#         @command = command
-#     end
+    def initialize(command)
+        @command = command
+    end
 
-#     def execute(command)
-#         case command
-#         when 'X'
-#             state = false
-#         when 'I'
-#             img = Image.new(command[1].to_i,command[2].to_i)
-#         when 'C'
-#             ClearCmd.execute(image: img)
-#         when 'L'
-#             img.color_pixel(command[2].to_i-1,command[1].to_i-1,command[3])
-#         when 'V'
-#             img = VerticalSegmentCmd.execute( x: (command[1].to_i-1),
-#                                         y1: (command[2].to_i-1),
-#                                         y2: (command[3].to_i-1),
-#                                         c: command[4],
-#                                         image: img )
-#         when 'H'
-#             img = HorizontalSegmentCmd.execute(   x1: command[1].to_i-1,
-#                                             x2: command[2].to_i-1,
-#                                             y: command[3].to_i-1,
-#                                             c: command[4],
-#                                             image: img ) 
-#         when 'F'
-#             img = FillRegionCmd.execute(  x: command[2].to_i-1,
-#                                     y: command[1].to_i-1,
-#                                     c: command[3],
-#                                     image: img)
-#         when 'S'
-#             ShowCmd.execute(image: img)
-#         end 
-#     end
-# end
+    def execute(img)
+        state = true
+        case command[0]
+        when 'X'
+            state = false
+        when 'I'
+            img = Image.new(command[1].to_i,command[2].to_i)
+        when 'C'
+            img.img = ClearCmd.execute(image: img)
+        when 'L'
+            img.color_pixel(command[2].to_i-1,command[1].to_i-1,command[3])
+        when 'V'
+            img.img = VerticalSegmentCmd.execute( x: (command[1].to_i-1),
+                                        y1: (command[2].to_i-1),
+                                        y2: (command[3].to_i-1),
+                                        c: command[4],
+                                        image: img )
+        when 'H'
+            img.img = HorizontalSegmentCmd.execute(   x1: command[1].to_i-1,
+                                            x2: command[2].to_i-1,
+                                            y: command[3].to_i-1,
+                                            c: command[4],
+                                            image: img ) 
+        when 'F'
+            img.img = FillRegionCmd.execute(  x: command[2].to_i-1,
+                                    y: command[1].to_i-1,
+                                    c: command[3],
+                                    image: img)
+        when 'S'
+            ShowCmd.execute(image: img)
+        end
+        [img,state] 
+    end
+end
 
-state = true
+#------------------------#
+
+state = true  
+img = Image.new()
 
 while state
-    command = gets.chomp.split(" ")
-    case command[0]
-    when 'X'
-        state = false
-    when 'I'
-        img = Image.new(command[1].to_i,command[2].to_i)
-    when 'C'
-        img.img = ClearCmd.execute(image: img)
-    when 'L'
-        img.color_pixel(command[2].to_i-1,command[1].to_i-1,command[3])
-    when 'V'
-        img.img = VerticalSegmentCmd.execute( x: (command[1].to_i-1),
-                                    y1: (command[2].to_i-1),
-                                    y2: (command[3].to_i-1),
-                                    c: command[4],
-                                    image: img )
-    when 'H'
-        img.img = HorizontalSegmentCmd.execute(   x1: command[1].to_i-1,
-                                        x2: command[2].to_i-1,
-                                        y: command[3].to_i-1,
-                                        c: command[4],
-                                        image: img ) 
-    when 'F'
-        img.img = FillRegionCmd.execute(  x: command[2].to_i-1,
-                                y: command[1].to_i-1,
-                                c: command[3],
-                                image: img)
-    when 'S'
-        ShowCmd.execute(image: img)
-    end
+    command = Command.new(gets.chomp.split(" "))
+    img,state = command.execute(img)
 end
 
 

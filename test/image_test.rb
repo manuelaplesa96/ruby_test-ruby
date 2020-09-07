@@ -15,7 +15,6 @@ class RubyTest < Minitest::Test
   end
 
   def test_show_image
-    #skip
     assert_output(/^O{5}${6}/) { ShowCmd.execute(image: Image.new(5,6)) }
   end
 
