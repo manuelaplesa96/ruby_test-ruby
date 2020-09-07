@@ -15,10 +15,8 @@ class RubyTest < Minitest::Test
   end
 
   def test_show_image
-    # skip
-    excepted = Array.new(6){Array.new(5,'O')}
-
-    assert_equal excepted, ShowCmd.execute(image: Image.new(5,6))
+    #skip
+    assert_output(/^O{5}${6}/) { ShowCmd.execute(image: Image.new(5,6)) }
   end
 
   def test_color_pixel
