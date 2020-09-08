@@ -15,6 +15,6 @@ class VerticalSegmentCmd < BaseCmd
     for i in y1..y2
       image.color_pixel(i,x,c)
     end
-    image.img
+    image
   end
 end

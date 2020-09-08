@@ -11,7 +11,7 @@ class ClearCmd < BaseCmd
     image.img.map do |row|
         row.map!{'O'}
     end
-    image.img
+    image
   end
 
 end

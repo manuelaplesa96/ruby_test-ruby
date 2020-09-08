@@ -15,6 +15,6 @@ class HorizontalSegmentCmd < BaseCmd
     for i in x1..x2
       image.color_pixel(y,i,c)
     end
-    image.img
+    image
   end
 end
