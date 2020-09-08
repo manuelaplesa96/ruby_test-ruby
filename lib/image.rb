@@ -1,12 +1,16 @@
 class Image
-  attr_accessor :img, :n,:m
+  attr_accessor :img, :n, :m
   
   def initialize(m=1,n=1)
     raise 'Wrong dimensions' unless valid_dimensions?(m,n)
-    self.m = m; self.n = n
-    self.img = Array.new(n){Array.new(m,'O')}
+    self.m = m.to_i; self.n = n.to_i
   end
 
+  def execute
+    self.img = Array.new(n){Array.new(m,'O')}
+    self
+  end
+  
   def color_pixel(x,y,c)
     self.img[x][y] = c if valid_coordinates?(x,y)
     img
@@ -17,7 +21,7 @@ class Image
     img[x][y]
   end
 
-  def make_vaild_coordinate(a=0,b=0,c=0)
+  def make_coordinates(a=0,b=0,c=0)
     [coordinate(a),coordinate(b),coordinate(c)]
   end
 

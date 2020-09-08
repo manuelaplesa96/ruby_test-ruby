@@ -4,7 +4,7 @@ class FillRegionCmd < BaseCmd
   attr_accessor :x,:y,:c,:image
 
   def initialize(x:,y:,c:,image:)
-    self.x = x; self.y = y
+    self.x, self.y = image.make_coordinates(x, y)
     self.c = c
     self.image = image
   end

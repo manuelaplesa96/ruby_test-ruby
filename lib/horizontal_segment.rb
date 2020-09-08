@@ -4,7 +4,7 @@ class HorizontalSegmentCmd < BaseCmd
   attr_accessor :x1,:x2,:y,:c,:image
 
   def initialize(x1:,x2:,y:,c:,image:)
-    self.x1 = x1; self.x2 = x2; self.y = y
+    self.x1, self.x2, self.y = image.make_coordinates(x1, x2, y)
     self.c = c
     self.image = image
   end
