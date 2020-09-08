@@ -4,14 +4,20 @@ class ClearCmd < BaseCmd
   attr_accessor :image
 
   def initialize(image:)
-    @image = image
+    self.image = image
   end
 
   def execute
-    image.img.map do |row|
-        row.map!{'O'}
-    end
+    clear_image
     image
+  end
+
+  private
+
+  def clear_image
+    image.img.map do |row|
+      row.map!{'O'}
+    end
   end
 
 end

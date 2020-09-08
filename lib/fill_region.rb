@@ -4,10 +4,9 @@ class FillRegionCmd < BaseCmd
   attr_accessor :x,:y,:c,:image
 
   def initialize(x:,y:,c:,image:)
-    @x = x
-    @y = y
-    @c = c
-    @image = image
+    self.x = x; self.y = y
+    self.c = c
+    self.image = image
   end
 
   def execute
@@ -28,7 +27,6 @@ class FillRegionCmd < BaseCmd
     fill_region(x,y+1,c) if image.get_color(x,y+1) == current_color
     fill_region(x-1,y,c) if image.get_color(x-1,y) == current_color 
     fill_region(x+1,y,c) if image.get_color(x+1,y) == current_color 
-      
   end
 
 end

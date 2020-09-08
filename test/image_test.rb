@@ -9,17 +9,19 @@ require_relative '../lib/fill_region'
 
 class RubyTest < Minitest::Test
   def test_create_image
+    # skip
     excepted = Image.new(5,6)
     
     assert_instance_of Image, excepted
   end
 
   def test_show_image
+    # skip
     assert_output(/^O{5}${6}/) { ShowCmd.execute(image: Image.new(5,6)) }
   end
 
   def test_color_pixel
-    #skip
+    # skip
     img = Image.new(5,6)
     img.color_pixel(1,2,"A")
     
@@ -27,9 +29,9 @@ class RubyTest < Minitest::Test
   end
 
   def test_vertical_segment
-    #skip
+    # skip
     img = Image.new(5,6)
-    result_img = VerticalSegmentCmd.execute( x: 1 ,y1: 2,y2: 3,c: "W" ,image: img).img
+    result_img = VerticalSegmentCmd.execute( x: 1 ,y1: 2,y2: 3,c: "W" ,image: img).print_image
     
     expected = [["O","O","O","O","O"],["O","O","O","O","O"],["O","W","O","O","O"],["O","W","O","O","O"],["O","O","O","O","O"],["O","O","O","O","O"]]
     
@@ -37,9 +39,9 @@ class RubyTest < Minitest::Test
   end
 
   def test_horizontal_segment
-    #skip
+    # skip
     img = Image.new(5,6)
-    result_img = HorizontalSegmentCmd.execute( x1: 2,x2: 3,y: 1,c: "Z" ,image: img).img
+    result_img = HorizontalSegmentCmd.execute( x1: 2,x2: 3,y: 1,c: "Z" ,image: img).print_image
     
     expected = [["O","O","O","O","O"],["O","O","Z","Z","O"],["O","O","O","O","O"],["O","O","O","O","O"],["O","O","O","O","O"],["O","O","O","O","O"]]
     
@@ -47,10 +49,10 @@ class RubyTest < Minitest::Test
   end
 
   def test_fill_region
-    #skip
+    # skip
     img = Image.new(5,6)
     img.color_pixel(2,1,"A")
-    result_img = FillRegionCmd.execute(x: 2,y: 2,c: "J",image: img).img
+    result_img = FillRegionCmd.execute(x: 2,y: 2,c: "J",image: img).print_image
 
     expected = [["J","J","J","J","J"],["J","J","J","J","J"],["J","A","J","J","J"],["J","J","J","J","J"],["J","J","J","J","J"],["J","J","J","J","J"]]
     
@@ -58,10 +60,11 @@ class RubyTest < Minitest::Test
   end
 
   def test_clear_image
+    # skip
     img = Image.new(5,6)
     img.color_pixel(1,2,"A")
 
-    result_img = ClearCmd.execute(image: img).img
+    result_img = ClearCmd.execute(image: img).print_image
 
     expected = [["O","O","O","O","O"],["O","O","O","O","O"],["O","O","O","O","O"],["O","O","O","O","O"],["O","O","O","O","O"],["O","O","O","O","O"]]
 
