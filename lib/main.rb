@@ -19,14 +19,8 @@ require_relative 'horizontal_segment'
 require_relative 'fill_region'
 require_relative 'color_pixel'
 
-state = true  
-image = Image.new()
-
-while state
-  command = CommandFactory.new(command: gets.chomp.split(" ")).create(image)
-  # p command
-  image = command.execute
-  # p image
+while true
+  CommandFactory.new(command: gets.chomp.split(" ")).create.execute
 end
 
 

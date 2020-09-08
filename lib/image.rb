@@ -2,8 +2,9 @@ class Image
   attr_accessor :img, :n, :m
   
   def initialize(m=1,n=1)
-    raise 'Wrong dimensions' unless valid_dimensions?(m,n)
-    self.m = m.to_i; self.n = n.to_i
+    m, n = make_coordinates(m,n)
+    raise 'Wrong dimensions' unless valid_dimensions?(m+1,n+1)
+    self.m = m+1; self.n = n+1
   end
 
   def execute
