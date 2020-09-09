@@ -1,8 +1,7 @@
-require_relative 'base'
+require_relative 'base_cmd'
 
 class ColorPixelCmd < BaseCmd
-  attr_accessor :image, :x, :y, :c
-
+  
   def initialize(x:,y:,c:,image:)
     self.x, self.y = image.make_coordinates(x, y)
     self.c = c
@@ -13,5 +12,9 @@ class ColorPixelCmd < BaseCmd
     image.color_pixel(x,y,c)
     image
   end
+
+  private
+
+  attr_accessor :x, :y, :c
 
 end

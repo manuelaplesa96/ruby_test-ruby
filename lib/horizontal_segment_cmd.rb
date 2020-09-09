@@ -1,8 +1,7 @@
-require_relative 'base'
+require_relative 'base_cmd'
 
 class HorizontalSegmentCmd < BaseCmd
-  attr_accessor :x1,:x2,:y,:c,:image
-
+  
   def initialize(x1:,x2:,y:,c:,image:)
     self.x1, self.x2, self.y = image.make_coordinates(x1, x2, y)
     self.c = c
@@ -15,6 +14,8 @@ class HorizontalSegmentCmd < BaseCmd
   end
 
   private
+
+  attr_accessor :x1,:x2,:y,:c
 
   def horizontal_segment_image
     for i in x1..x2

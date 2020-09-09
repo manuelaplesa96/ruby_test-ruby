@@ -1,5 +1,4 @@
 class CommandFactory
-  attr_accessor :command
   @@obj = nil
 
   def initialize(command:)
@@ -9,7 +8,7 @@ class CommandFactory
   def create
     case command[0]
     when 'X'
-      exit!
+      return ExitCmd.new
     when 'I'
       @@obj = Image.new(command[1],command[2])
       return @@obj
@@ -27,5 +26,9 @@ class CommandFactory
       return ShowCmd.new(image: @@obj)
     end  
   end
+
+  private
+
+  attr_accessor :command
 
 end

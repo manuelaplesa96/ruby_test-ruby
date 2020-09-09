@@ -1,7 +1,6 @@
-require_relative 'base'
+require_relative 'base_cmd'
 
 class ShowCmd < BaseCmd
-  attr_accessor :image
 
   def initialize(image:)
     self.image = image
@@ -15,7 +14,7 @@ class ShowCmd < BaseCmd
   private
 
   def show_image
-    image.img.each do |row|
+    image.print_image.each do |row|
       puts row.each { |col| col }.join("")
     end
   end

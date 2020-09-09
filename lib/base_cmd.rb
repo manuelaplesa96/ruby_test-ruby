@@ -1,6 +1,5 @@
 class BaseCmd
-    attr_accessor :image
-
+   
     def self.execute(**args)
       self.new(**args).execute
     end
@@ -8,4 +7,9 @@ class BaseCmd
     def execute
       raise 'Not implemented!'
     end
+
+    private
+
+    attr_accessor :image
+
 end

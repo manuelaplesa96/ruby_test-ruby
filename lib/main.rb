@@ -12,12 +12,14 @@
 
 require_relative 'command_factory'
 require_relative 'image'
-require_relative 'show'
-require_relative 'clear'
-require_relative 'vertical_segment'
-require_relative 'horizontal_segment'
-require_relative 'fill_region'
-require_relative 'color_pixel'
+require_relative 'show_cmd'
+require_relative 'clear_cmd'
+require_relative 'vertical_segment_cmd'
+require_relative 'horizontal_segment_cmd'
+require_relative 'fill_region_cmd'
+require_relative 'color_pixel_cmd'
+require_relative 'exit_cmd'
+
 
 while true
   CommandFactory.new(command: gets.chomp.split(" ")).create.execute

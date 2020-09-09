@@ -1,7 +1,6 @@
-require_relative 'base'
+require_relative 'base_cmd'
 
 class ClearCmd < BaseCmd
-  attr_accessor :image
 
   def initialize(image:)
     self.image = image
@@ -15,9 +14,8 @@ class ClearCmd < BaseCmd
   private
 
   def clear_image
-    image.img.map do |row|
-      row.map!{'O'}
-    end
+    ## trenutno execute radi to sto je potrebno, pa mogu ovako dok ne promjenim samu klasu Image
+    image.execute
   end
 
 end
